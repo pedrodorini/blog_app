@@ -31,7 +31,34 @@ app.get('/blogs', (req, res) => {
     }
   })
 })
-
+app.get('/blogs/new', (req, res) => {
+  res.render('new')
+})
+app.post('/blogs', (req, res) => {
+  let newBlog = {
+    title: req.body.title,
+    image: req.body.image,
+    body: req.body.body
+  }
+  Blog.create(newBlog, (err, blog) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('New blog post added')
+      console.log(blog)
+      res.redirect('/blogs')
+    }
+  })
+})
+app.get('/blogs/:id', (req, res) => {
+  Blog.findById(req.params.id, (err, blog) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.render('show', { blog: blog })
+    }
+  })
+})
 app.listen(3000, () => {
   console.log('Server running on port 3000')
 })

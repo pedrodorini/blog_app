@@ -1,0 +1,13 @@
+i.icon {
+  font-size: 2em;
+}
+.container.main:nth-child(2) {
+  margin-top: 7em;
+}
+.container.main:last-child {
+  margin-bottom: 7em;
+}
+img {
+  width: 100%;
+  height: 300px;
+}

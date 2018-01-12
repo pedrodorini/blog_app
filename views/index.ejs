@@ -1,6 +1,11 @@
+<% include partials/header %>
 <% for (blog of blogs) { %>
-  <h1><%= blog.title %></h1>
-  <img src="<%= blog.image %>">
-  <p><%= blog.body %></p>
-  <h5><%= blog.created %></h5>
+  <div class="ui main container text segment">
+    <h2><%= blog.title %></h2>
+    <img src="<%= blog.image %>">
+    <h5>Posted: <%= blog.created.toDateString() %></h5>
+    <p><%= blog.body.substring(0, 100) %>...</p>
+    <a href="/blogs/<%= blog._id %>">Read more</a>
+  </div>
 <% }  %>
+<% include partials/footer %>
