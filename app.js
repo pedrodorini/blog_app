@@ -17,6 +17,9 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
+app.get('/', (req, res) => {
+  res.redirect('/blogs')
+})
 app.get('/blogs', (req, res) => {
   Blog.find({}, (err, blogs) => {
     if (err) {
