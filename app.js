@@ -2,9 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride("_method"))
 app.set('view engine', 'ejs')
 mongoose.connect('mongodb://localhost/blog_app', { useMongoClient: true })
 
@@ -56,6 +58,29 @@ app.get('/blogs/:id', (req, res) => {
       console.log(err)
     } else {
       res.render('show', { blog: blog })
+    }
+  })
+})
+app.get('/blogs/:id/edit', (req, res) => {
+  Blog.findById(req.params.id, (err, blog) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.render('edit', { blog: blog })
+    }
+  })
+})
+app.put('/blogs/:id', (req, res) => {
+  let newData = {
+    title: req.body.title,
+    image: req.body.image,
+    body: req.body.body
+  }
+  Blog.findByIdAndUpdate(req.params.id, newData, (err, blog) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect(`/blogs/${req.params.id}`)
     }
   })
 })
