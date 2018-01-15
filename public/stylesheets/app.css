@@ -10,3 +10,7 @@ i.icon {
 img {
   width: 100%;
 }
+
+#delete {
+  display: inline;
+}
