@@ -84,6 +84,15 @@ app.put('/blogs/:id', (req, res) => {
     }
   })
 })
+app.delete('/blogs/:id', (req, res) => {
+  Blog.findByIdAndRemove(req.params.id, (err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('/blogs')
+    }
+  })
+})
 app.listen(3000, () => {
   console.log('Server running on port 3000')
 })
