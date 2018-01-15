@@ -7,10 +7,6 @@ i.icon {
 .container.main:last-child {
   margin-bottom: 7em;
 }
-img {
-  width: 100%;
-}
-
 #delete {
   display: inline;
 }
